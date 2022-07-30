@@ -8,8 +8,10 @@ object DesktopLauncher {
     @JvmStatic
     fun main(arg: Array<String>) {
         val config = Lwjgl3ApplicationConfiguration()
-        config.setForegroundFPS(60)
         config.setTitle("fgno-game")
+        config.setWindowedMode(800,480)
+        config.useVsync(true)
+        config.setForegroundFPS(60)
         Lwjgl3Application(FgnoGame(), config)
     }
 }
