@@ -2,6 +2,7 @@ package org.fgno.game
 
 import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Input
 import com.badlogic.gdx.audio.Music
 import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.graphics.OrthographicCamera
@@ -50,6 +51,12 @@ class FgnoGame : ApplicationAdapter() {
             camera.unproject(touchPos)
             bucket.x = touchPos.x - 64 / 2
         }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) bucket.x -= 200 * Gdx.graphics.getDeltaTime();
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) bucket.x += 200 * Gdx.graphics.getDeltaTime();
+
+        if(bucket.x < 0f) bucket.x = 0f;
+        if(bucket.x > 800f - 64f) bucket.x = 800f - 64f;
     }
 
     override fun dispose() {
