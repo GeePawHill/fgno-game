@@ -8,7 +8,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Rectangle
+import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.utils.ScreenUtils
+
 
 class FgnoGame : ApplicationAdapter() {
 
@@ -41,6 +43,13 @@ class FgnoGame : ApplicationAdapter() {
         batch.begin();
         batch.draw(bucketImage, bucket.x, bucket.y);
         batch.end();
+
+        if (Gdx.input.isTouched) {
+            val touchPos = Vector3()
+            touchPos[Gdx.input.x.toFloat(), Gdx.input.y.toFloat()] = 0f
+            camera.unproject(touchPos)
+            bucket.x = touchPos.x - 64 / 2
+        }
     }
 
     override fun dispose() {
