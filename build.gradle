@@ -1,5 +1,5 @@
 buildscript {
-    
+    ext.set("kotlinVersion","1.6.10")
 
     repositories {
         mavenLocal()
@@ -9,7 +9,7 @@ buildscript {
         google()
     }
     dependencies {
-        
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
     }
 }
@@ -36,6 +36,10 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
         maven { url "https://jitpack.io" }
+    }
+
+    tasks.withType(Test) {
+        useJUnitPlatform()
     }
 }
 
